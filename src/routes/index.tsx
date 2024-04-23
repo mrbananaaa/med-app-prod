@@ -3,17 +3,17 @@ import { useRoutes } from "react-router-dom";
 import MainLayout from "../components/Layout/MainLayout";
 import { lazyImport } from "../utils/lazyImport";
 
-const { HomeRoutes: Home } = lazyImport(
-  () => import("../features/home"),
-  "HomeRoutes",
+const { Home } = lazyImport(
+  () => import("@/features/home/routes/Home"),
+  "Home",
 );
-const { SymptomRoutes: Symptom } = lazyImport(
-  () => import("../features/symptom"),
-  "SymptomRoutes",
+const { Symptom } = lazyImport(
+  () => import("@/features/symptom/routes/Symptom"),
+  "Symptom",
 );
-const { DiagnosisRoutes: Diagnosis } = lazyImport(
-  () => import("../features/diagnosis"),
-  "DiagnosisRoutes",
+const { Diagnosis } = lazyImport(
+  () => import("@/features/diagnosis/routes/Diagnosis"),
+  "Diagnosis",
 );
 
 export const AppRoutes = () => {

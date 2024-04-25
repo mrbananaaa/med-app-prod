@@ -1,33 +1,25 @@
-import type { RouteObject } from "react-router-dom";
-import { useRoutes } from "react-router-dom";
-import MainLayout from "../components/Layout/MainLayout";
-import { lazyImport } from "../utils/lazyImport";
+import type { RouteObject } from 'react-router-dom';
+import { useRoutes } from 'react-router-dom';
 
-const { Home } = lazyImport(
-  () => import("@/features/home/routes/Home"),
-  "Home",
-);
-const { Symptom } = lazyImport(
-  () => import("@/features/symptom/routes/Symptom"),
-  "Symptom",
-);
-const { Diagnosis } = lazyImport(
-  () => import("@/features/diagnosis/routes/Diagnosis"),
-  "Diagnosis",
-);
+import MainLayout from '../components/Layout/MainLayout';
+import { lazyImport } from '../utils/lazyImport';
+
+const { Home } = lazyImport(() => import('@/features/home'), 'Home');
+const { Symptom } = lazyImport(() => import('@/features/symptom'), 'Symptom');
+const { Diagnosis } = lazyImport(() => import('@/features/diagnosis'), 'Diagnosis');
 
 export const AppRoutes = () => {
   const commonRoute: RouteObject[] = [
     {
-      path: "/",
+      path: '/',
       element: <Home />,
     },
     {
-      path: "/symptom",
+      path: '/symptom',
       element: <Symptom />,
     },
     {
-      path: "/diagnosis",
+      path: '/diagnosis',
       element: <Diagnosis />,
     },
   ];

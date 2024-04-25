@@ -1,8 +1,9 @@
-import { DATA_GEJALA } from "@/test/symptom-data";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { ChevronLeft } from "lucide-react";
-import { Link } from "react-router-dom";
+import { ChevronLeft } from 'lucide-react';
+import { Link } from 'react-router-dom';
+
+import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
+import { DATA_GEJALA } from '@/test/symptom-data';
 
 const SymptomOptions = () => {
   return (
@@ -12,7 +13,7 @@ const SymptomOptions = () => {
           <div key={id} className="flex">
             <Input className="peer hidden" type="checkbox" id={id} />
             <label
-              className="w-full flex justify-center items-center p-4 cursor-pointer bg-gray-200 rounded-md peer-checked:bg-[#1939D2] select-none peer-checked:text-white text-center font-semibold text-md"
+              className="text-md flex w-full cursor-pointer select-none items-center justify-center rounded-md bg-gray-200 p-4 text-center font-semibold peer-checked:bg-[#1939D2] peer-checked:text-white"
               htmlFor={id}
             >
               <span>{name}</span>
@@ -31,7 +32,7 @@ export const Symptom = () => {
         <Link to="/">
           <ChevronLeft className="absolute inset-x-0 inset-y-1/3" />
         </Link>
-        <h1 className="font-semibold text-3xl text-center max-w-[200px] leading-none">
+        <h1 className="max-w-[200px] text-center text-3xl font-semibold leading-none">
           Gejala Yang Anda Rasakan
         </h1>
       </div>
@@ -39,7 +40,7 @@ export const Symptom = () => {
       <SymptomOptions />
 
       <Link to="/diagnosis">
-        <Button className="mt-16 py-7 w-full font-semibold text-md bg-[#1939D2] hover:bg-[#112FBD]">
+        <Button className="text-md mt-16 w-full bg-[#1939D2] py-7 font-semibold hover:bg-[#112FBD]">
           Diagnosa
         </Button>
       </Link>

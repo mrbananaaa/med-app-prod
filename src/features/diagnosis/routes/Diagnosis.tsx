@@ -1,16 +1,11 @@
-import { ChevronLeft } from "lucide-react";
-import {
-  Form,
-  FormControl,
-  FormField,
-  FormItem,
-  FormLabel,
-} from "@/components/ui/form";
-import { Input } from "@/components/ui/input";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { useForm } from "react-hook-form";
-import { Link } from "react-router-dom";
-import z from "zod";
+import { zodResolver } from '@hookform/resolvers/zod';
+import { ChevronLeft } from 'lucide-react';
+import { useForm } from 'react-hook-form';
+import { Link } from 'react-router-dom';
+import z from 'zod';
+
+import { Form, FormControl, FormField, FormItem, FormLabel } from '@/components/ui/form';
+import { Input } from '@/components/ui/input';
 
 // TODO: FIX Schema
 const formSchema = z.object({
@@ -24,10 +19,10 @@ const ProfileForm = () => {
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      nama: "",
-      nik: "",
-      ttl: "",
-      noRm: "",
+      nama: '',
+      nik: '',
+      ttl: '',
+      noRm: '',
     },
   });
 
@@ -40,10 +35,10 @@ const ProfileForm = () => {
       <form onSubmit={form.handleSubmit(onSubmit)}>
         {(
           [
-            ["nama", "Nama", "Nama Lengkap"],
-            ["nik", "NIK", "*305050xxxxxxxx"],
-            ["ttl", "TTL", "Surabaya, 30 Februari 1943"],
-            ["noRm", "No. RM", "*00.20.xx - 99.xx.xx"],
+            ['nama', 'Nama', 'Nama Lengkap'],
+            ['nik', 'NIK', '*305050xxxxxxxx'],
+            ['ttl', 'TTL', 'Surabaya, 30 Februari 1943'],
+            ['noRm', 'No. RM', '*00.20.xx - 99.xx.xx'],
           ] as const
         ).map(([name, label, placeholder]) => (
           <FormField
@@ -72,15 +67,13 @@ const ProfileForm = () => {
 const VitalMonitoring = () => {
   return (
     <div className="mt-7 grid grid-cols-2 gap-2">
-      {(["Suhu", "Denyut Nadi", "Tekanan Darah"] as const).map((label) => (
+      {(['Suhu', 'Denyut Nadi', 'Tekanan Darah'] as const).map((label) => (
         <div
           key={label}
-          className="p-3 flex justify-between items-center font-medium rounded-md bg-[#1939D2]"
+          className="flex items-center justify-between rounded-md bg-[#1939D2] p-3 font-medium"
         >
-          <div className="text-white text-xs leading-3 max-w-[40px]">
-            {label}
-          </div>
-          <div className="px-4 py-2 bg-white rounded-md flex justify-center items-center">
+          <div className="max-w-[40px] text-xs leading-3 text-white">{label}</div>
+          <div className="flex items-center justify-center rounded-md bg-white px-4 py-2">
             <div>200</div>
           </div>
         </div>
@@ -96,15 +89,13 @@ export const Diagnosis = () => {
         <Link to="/symptom">
           <ChevronLeft className="absolute inset-x-0 inset-y-1/3" />
         </Link>
-        <h1 className="font-semibold text-3xl text-center max-w-[250px] leading-none">
+        <h1 className="max-w-[250px] text-center text-3xl font-semibold leading-none">
           Hasil Diagnosa Anda
         </h1>
       </div>
       <div className="grid md:grid-cols-2 md:gap-x-8">
         <div>
-          <h1 className="font-semibold text-2xl leading-none mt-14">
-            Monitoring Tanda Vital
-          </h1>
+          <h1 className="mt-14 text-2xl font-semibold leading-none">Monitoring Tanda Vital</h1>
 
           <div className="lg:mt-14">
             <VitalMonitoring />
@@ -112,23 +103,23 @@ export const Diagnosis = () => {
         </div>
 
         <div>
-          <h1 className="font-semibold text-3xl mt-14">Identitas Diri</h1>
+          <h1 className="mt-14 text-3xl font-semibold">Identitas Diri</h1>
 
           <ProfileForm />
         </div>
       </div>
 
       <div className="md:flex md:justify-center">
-        <div className="md:flex md:flex-col md:justify-center md:min-w-[400px] mt-14 font-semibold">
+        <div className="mt-14 font-semibold md:flex md:min-w-[400px] md:flex-col md:justify-center">
           <div>
             <h2>Diagnosa Penyakit</h2>
-            <div className="mt-2 py-4 text-white bg-[#1939D2] rounded-md text-center text-sm">
+            <div className="mt-2 rounded-md bg-[#1939D2] py-4 text-center text-sm text-white">
               Tekanan Darah Tinggi (HIPERTENSI)
             </div>
           </div>
           <div className="mt-2">
             <h2>Tingkat Keparahan</h2>
-            <div className="mt-2 py-4 text-white bg-[#1939D2] rounded-md text-center text-sm">
+            <div className="mt-2 rounded-md bg-[#1939D2] py-4 text-center text-sm text-white">
               Kronis
             </div>
           </div>

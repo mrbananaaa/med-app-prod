@@ -7,7 +7,10 @@
     "dev": "vite",
     "build": "tsc && vite build",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
-    "preview": "vite preview"
+    "lint:fix": "eslint --fix --ext .js,.ts,.tsx ./src --ignore-path .gitignore",
+    "preview": "vite preview",
+    "prepare": "husky",
+    "validate": "lint-staged"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.3.4",
@@ -41,6 +44,8 @@
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-react-refresh": "^0.4.6",
     "eslint-plugin-tailwindcss": "^3.15.1",
+    "husky": "^9.0.11",
+    "lint-staged": "^15.2.2",
     "postcss": "^8.4.38",
     "prettier": "^3.2.5",
     "prettier-plugin-tailwindcss": "^0.5.14",
@@ -48,5 +53,10 @@
     "typescript": "^5.2.2",
     "vite": "^5.2.0",
     "vite-plugin-vercel": "^6.0.0"
+  },
+  "lint-staged": {
+    "**/*": [
+      "pnpm lint:fix"
+    ]
   }
 }

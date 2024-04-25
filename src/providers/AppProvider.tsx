@@ -1,20 +1,18 @@
-import { Button } from "@/components/ui/button";
-import { Spinner } from "@/components/ui/spinner";
-import * as React from "react";
-import { ErrorBoundary } from "react-error-boundary";
-import { BrowserRouter as Router } from "react-router-dom";
+import * as React from 'react';
+import { ErrorBoundary } from 'react-error-boundary';
+import { BrowserRouter as Router } from 'react-router-dom';
+
+import { Button } from '@/components/ui/button';
+import { Spinner } from '@/components/ui/spinner';
 
 const ErrorFallback = () => {
   return (
     <div
-      className="text-red-500 w-screen h-screen flex flex-col justify-center items-center"
+      className="flex h-screen w-screen flex-col items-center justify-center text-red-500"
       role="alert"
     >
       <h2 className="text-lg font-semibold">Ooops, something went wrong :( </h2>
-      <Button
-        className="mt-4"
-        onClick={() => window.location.assign(window.location.origin)}
-      >
+      <Button className="mt-4" onClick={() => window.location.assign(window.location.origin)}>
         Refresh
       </Button>
     </div>
@@ -30,7 +28,7 @@ export const AppProvider = ({ children }: AppProviderProps) => {
     <>
       <React.Suspense
         fallback={
-          <div className="flex items-center justify-center w-screen h-screen">
+          <div className="flex h-screen w-screen items-center justify-center">
             <Spinner size="xl" />
           </div>
         }

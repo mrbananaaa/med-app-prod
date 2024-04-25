@@ -1,10 +1,2 @@
-import { Route, Routes } from "react-router-dom";
-import { Diagnosis } from "./Diagnosis";
-
-export const DiagnosisRoutes = () => {
-  return (
-    <Routes>
-      <Route path="" element={<Diagnosis />} />
-    </Routes>
-  );
-};
+/* eslint react-refresh/only-export-components: 0 */
+export * from './Diagnosis';

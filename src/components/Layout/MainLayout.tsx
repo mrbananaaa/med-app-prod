@@ -5,7 +5,7 @@ type MainLayoutProps = {
 const MainLayout = ({ children }: MainLayoutProps) => {
   return (
     <div className="bg-slate-100">
-      <div className="font-main container px-4 py-6 pt-12">{children}</div>;
+      <div className="font-main container m-4 px-4 py-6 pt-12">{children}</div>;
     </div>
   );
 };

@@ -1,68 +1,13 @@
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
-import { Link } from 'react-router-dom';
-import z from 'zod';
+import { useNavigate } from 'react-router-dom';
 
 import { Button } from '@/components/ui/button';
-import { Form, FormControl, FormField, FormItem, FormLabel } from '@/components/ui/form';
-import { Input } from '@/components/ui/input';
 
-// TODO: FIX Schema
-const formSchema = z.object({
-  nama: z.string().min(3),
-  nik: z.string().min(10),
-  ttl: z.string(),
-  noRm: z.string(),
-});
-
-const ProfileForm = () => {
-  const form = useForm<z.infer<typeof formSchema>>({
-    resolver: zodResolver(formSchema),
-    defaultValues: {
-      nama: '',
-      nik: '',
-      ttl: '',
-      noRm: '',
-    },
-  });
-
-  function onSubmit(values: z.infer<typeof formSchema>) {
-    console.log(values);
-  }
-
-  return (
-    <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)}>
-        {(
-          [
-            ['nama', 'Nama', 'Nama Lengkap'],
-            ['nik', 'NIK', '*305050xxxxxxxx'],
-            ['ttl', 'TTL', 'Surabaya, 30 Februari 1943'],
-            ['noRm', 'No. RM', '*00.20.xx - 99.xx.xx'],
-          ] as const
-        ).map(([name, label, placeholder]) => (
-          <FormField
-            key={name}
-            control={form.control}
-            name={name}
-            render={({ field }) => (
-              <FormItem className="mt-4">
-                <FormLabel className="font-semibold">{label}</FormLabel>
-                <FormControl>
-                  <Input
-                    className="px-4 py-6 outline outline-2 outline-[#1939D2] placeholder:text-[#898989]"
-                    placeholder={placeholder}
-                    {...field}
-                  />
-                </FormControl>
-              </FormItem>
-            )}
-          />
-        ))}
-      </form>
-    </Form>
-  );
-};
+import { ProfileForm } from '../components/ProfileForm';
+import { VitalMonitoring } from '../components/VitalMonitoring';
+import { formSchema } from '../types';
+import type { TFormSchema } from '../types';
 
 const AgeRangeForm = () => {
   return (
@@ -76,25 +21,30 @@ const AgeRangeForm = () => {
   );
 };
 
-const VitalMonitoring = () => {
-  return (
-    <div className="mt-7 grid grid-cols-2 gap-2">
-      {(['Suhu', 'Denyut Nadi', 'Tekanan Darah'] as const).map((label) => (
-        <div
-          key={label}
-          className="flex items-center justify-between rounded-md bg-[#1939D2] p-3 font-medium"
-        >
-          <div className="max-w-[40px] text-xs leading-3 text-white">{label}</div>
-          <div className="flex items-center justify-center rounded-md bg-white px-4 py-2">
-            <div>200</div>
-          </div>
-        </div>
-      ))}
-    </div>
-  );
-};
-
 export const Home = () => {
+  const navigate = useNavigate();
+
+  const profileForm = useForm<TFormSchema>({
+    resolver: zodResolver(formSchema),
+    defaultValues: {
+      nama: '',
+      nik: '',
+      ttl: '',
+      noRm: '',
+    },
+  });
+
+  function onSubmit(values: TFormSchema) {
+    console.log('form submitted');
+    console.log({
+      ...values,
+    });
+
+    // TODO: set store value
+
+    navigate('/symptom');
+  }
+
   return (
     <div>
       <div className="grid md:grid-cols-2 lg:gap-x-8 lg:gap-y-10">
@@ -102,7 +52,7 @@ export const Home = () => {
           <h1 className="text-3xl font-semibold">Identitas Diri</h1>
 
           <div className="lg:mt-6">
-            <ProfileForm />
+            <ProfileForm {...profileForm} />
           </div>
         </div>
 
@@ -124,11 +74,12 @@ export const Home = () => {
       </div>
 
       <div className="justify-center lg:flex">
-        <Link to="/symptom">
-          <Button className="text-md mt-16 w-full bg-[#1939D2] py-7 font-semibold hover:bg-[#112FBD] lg:w-fit lg:px-32">
-            Selanjutnya
-          </Button>
-        </Link>
+        <Button
+          onClick={profileForm.handleSubmit(onSubmit)}
+          className="text-md mt-16 w-full bg-[#1939D2] py-7 font-semibold hover:bg-[#112FBD] lg:w-fit lg:px-32"
+        >
+          Selanjutnya
+        </Button>
       </div>
     </div>
   );

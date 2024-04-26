@@ -6,10 +6,8 @@ import { DATA_GEJALA } from '@/test/symptom-data';
 
 export const SymptomOptions = () => {
   const symptom = useUserStore(useShallow((state) => state.gejala));
-  const addSymptom = useUserStore((state) => state.addSypmtom);
-  const removeSymptom = useUserStore((state) => state.removeSypmtom);
-
-  console.log(symptom);
+  const addSymptom = useUserStore.use.addSypmtom();
+  const removeSymptom = useUserStore.use.removeSypmtom();
 
   function isChecked(gejala: string): boolean {
     if (symptom.find((v) => v === gejala)) {
@@ -25,8 +23,6 @@ export const SymptomOptions = () => {
     } else {
       removeSymptom(gejala);
     }
-
-    console.log(e);
   }
 
   return (
@@ -42,7 +38,7 @@ export const SymptomOptions = () => {
               onChange={(e) => onChecked(e, name)}
             />
             <label
-              className="text-md flex w-full cursor-pointer select-none items-center justify-center rounded-md bg-gray-200 p-4 text-center font-semibold peer-checked:bg-[#1939D2] peer-checked:text-white"
+              className="text-md flex w-full cursor-pointer select-none items-center justify-center rounded-md bg-gray-200 p-4 text-center font-semibold peer-checked:bg-blue-500 peer-checked:text-white"
               htmlFor={id}
             >
               <span>{name}</span>

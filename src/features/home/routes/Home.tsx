@@ -3,6 +3,7 @@ import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 
 import { Button } from '@/components/ui/button';
+import { useUserStore } from '@/stores/user';
 
 import { AgeSelect } from '../components/AgeSelect';
 import { ProfileForm } from '../components/ProfileForm';
@@ -11,6 +12,8 @@ import { formSchema } from '../types';
 import type { TFormSchema } from '../types';
 
 export const Home = () => {
+  const setUserInfo = useUserStore.use.setUserInfo();
+
   const navigate = useNavigate();
 
   const profileForm = useForm<TFormSchema>({
@@ -24,14 +27,29 @@ export const Home = () => {
     },
   });
 
-  function onSubmit(values: TFormSchema) {
-    console.log('form submitted');
-    console.log({
-      ...values,
-    });
+  function onSubmit({ nama, nik, tempatLahir, tanggalLahir, noRm }: TFormSchema) {
+    console.log('get empty store');
+    console.log(useUserStore.getState());
+
+    const [tahun, bulan, tanggal] = tanggalLahir.split('-');
+    const umur = String(new Date().getFullYear() - Number(tahun));
 
     // TODO: set store value
+    setUserInfo({
+      nama,
+      nik,
+      ttl: {
+        kota: tempatLahir,
+        tanggal,
+        bulan,
+        tahun,
+      },
+      noRm,
+      umur,
+    });
 
+    console.log('get setted store');
+    console.log(useUserStore.getState());
     navigate('/symptom');
   }
 

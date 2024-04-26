@@ -18,7 +18,8 @@ export const Home = () => {
     defaultValues: {
       nama: '',
       nik: '',
-      ttl: '',
+      tempatLahir: '',
+      tanggalLahir: '',
       noRm: '',
     },
   });

@@ -54,9 +54,12 @@
     "vite": "^5.2.0",
     "vite-plugin-vercel": "^6.0.0"
   },
+  "engines": {
+    "pnpm": ">=6"
+  },
   "lint-staged": {
-    "**/*": [
-      "pnpm lint:fix"
+    "*.{js,ts,tsx}": [
+      "eslint . --fix --ignore-path .gitignore"
     ]
   }
 }

@@ -4,22 +4,11 @@ import { useNavigate } from 'react-router-dom';
 
 import { Button } from '@/components/ui/button';
 
+import { AgeSelect } from '../components/AgeSelect';
 import { ProfileForm } from '../components/ProfileForm';
 import { VitalMonitoring } from '../components/VitalMonitoring';
 import { formSchema } from '../types';
 import type { TFormSchema } from '../types';
-
-const AgeRangeForm = () => {
-  return (
-    <div className="mt-7 grid grid-cols-2 gap-2">
-      {(['7 - 12', '13 - 30', '31 - 36', '>55'] as const).map((range, i) => (
-        <Button key={i} className="bg-[#1939D2] py-8 text-base font-semibold hover:bg-[#112FBD]">
-          {range} tahun
-        </Button>
-      ))}
-    </div>
-  );
-};
 
 export const Home = () => {
   const navigate = useNavigate();
@@ -61,7 +50,7 @@ export const Home = () => {
             Pilih Rentang Usia Anda!
           </h1>
 
-          <AgeRangeForm />
+          <AgeSelect />
         </div>
 
         <div>

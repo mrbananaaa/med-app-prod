@@ -1,4 +1,18 @@
-import { create } from 'zustand';
+import { create, StoreApi, UseBoundStore } from 'zustand';
+
+type WithSelectors<S> = S extends { getState: () => infer T }
+  ? S & { use: { [K in keyof T]: () => T[K] } }
+  : never;
+
+const createSelectors = <S extends UseBoundStore<StoreApi<object>>>(_store: S) => {
+  const store = _store as WithSelectors<typeof _store>;
+  store.use = {};
+  for (const k of Object.keys(store.getState())) {
+    (store.use as any)[k] = () => store((s) => s[k as keyof typeof s]);
+  }
+
+  return store;
+};
 
 type TTL = {
   kota: string;
@@ -17,27 +31,32 @@ type UserInfo = {
 };
 
 type UserStore = {
-  setName: (nama: string) => void;
-  setNik: (nik: string) => void;
-  setTtl: (ttl: TTL) => void;
-  setNoRm: (noRm: string) => void;
-  setAge: (umur: string) => void;
+  setUserInfo: (userInfo: Omit<UserInfo, 'gejala'>) => void;
   addSypmtom: (gejala: string) => void;
   removeSypmtom: (gejala: string) => void;
 } & UserInfo;
 
-export const useUserStore = create<UserStore>()((set) => ({
+const useUserStoreBase = create<UserStore>()((set) => ({
   nama: '',
   nik: '',
   ttl: { kota: '', tanggal: '', bulan: '', tahun: '' },
   noRm: '',
   umur: '',
   gejala: [],
-  setName: (nama) => set(() => ({ nama: nama })),
-  setNik: (nik) => set(() => ({ nik: nik })),
-  setTtl: (ttl) => set(() => ({ ttl: ttl })),
-  setNoRm: (noRm) => set(() => ({ noRm: noRm })),
-  setAge: (umur) => set(() => ({ umur: umur })),
-  addSypmtom: (gejala) => set((state) => ({ gejala: [...state.gejala, gejala] })),
-  removeSypmtom: (gejala) => set((state) => ({ gejala: state.gejala.filter((v) => v != gejala) })),
+  setUserInfo: ({ nama, nik, ttl, noRm, umur }) =>
+    set(() => ({
+      nama: nama,
+      nik: nik,
+      ttl: ttl,
+      noRm: noRm,
+      umur: umur,
+    })),
+  addSypmtom: (gejala) => {
+    set((state) => ({ gejala: [...state.gejala, gejala] }));
+  },
+  removeSypmtom: (gejala) => {
+    set((state) => ({ gejala: state.gejala.filter((v) => v != gejala) }));
+  },
 }));
+
+export const useUserStore = createSelectors(useUserStoreBase);

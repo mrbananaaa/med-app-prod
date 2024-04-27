@@ -3,11 +3,11 @@ import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 
 import { Button } from '@/components/ui/button';
+import { VitalMonitor } from '@/features/misc';
 import { useUserStore } from '@/stores/user';
 
 import { AgeSelect } from '../components/AgeSelect';
 import { ProfileForm } from '../components/ProfileForm';
-import { VitalMonitoring } from '../components/VitalMonitoring';
 import { formSchema } from '../types';
 import type { TFormSchema } from '../types';
 
@@ -77,7 +77,7 @@ export const Home = () => {
             Monitoring Tanda Vital
           </h1>
 
-          <VitalMonitoring />
+          <VitalMonitor />
         </div>
       </div>
 

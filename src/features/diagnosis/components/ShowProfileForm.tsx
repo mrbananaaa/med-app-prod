@@ -7,10 +7,14 @@ import { Input } from '@/components/ui/input';
 import {
   Select,
   SelectContent,
+  SelectGroup,
   SelectItem,
+  SelectLabel,
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select';
+import { useUserStore } from '@/stores/user';
+import { KOTA_ID } from '@/test/kota';
 
 const formSchema = z.object({
   nama: z.string().min(3, 'required'),
@@ -23,14 +27,19 @@ const formSchema = z.object({
 export type TFormSchema = z.infer<typeof formSchema>;
 
 export const ShowProfileForm = () => {
+  const nama = useUserStore.use.nama();
+  const nik = useUserStore.use.nik();
+  const ttl = useUserStore.use.ttl();
+  const noRm = useUserStore.use.noRm();
+
   const profileForm = useForm<TFormSchema>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      nama: 'Devyan Astagiri',
-      nik: '350501239102390',
-      tempatLahir: 'surabaya',
-      tanggalLahir: '2003-02-28',
-      noRm: '123909-123',
+      nama,
+      nik,
+      tempatLahir: ttl.kota,
+      tanggalLahir: `${ttl.tahun}-${ttl.bulan}-${ttl.tanggal}`,
+      noRm,
     },
     disabled: true,
   });
@@ -87,9 +96,18 @@ export const ShowProfileForm = () => {
                       </SelectTrigger>
                     </FormControl>
                     <SelectContent>
-                      <SelectItem value="surabaya">Surabaya</SelectItem>
-                      <SelectItem value="malang">Malang</SelectItem>
-                      <SelectItem value="bali">Bali</SelectItem>
+                      {Object.entries(KOTA_ID).map(([province, cities]) => (
+                        <SelectGroup key={province}>
+                          <>
+                            <SelectLabel>{province}</SelectLabel>
+                            {cities.map((city) => (
+                              <SelectItem key={city} value={city}>
+                                {city}
+                              </SelectItem>
+                            ))}
+                          </>
+                        </SelectGroup>
+                      ))}
                     </SelectContent>
                   </Select>
                 </FormItem>

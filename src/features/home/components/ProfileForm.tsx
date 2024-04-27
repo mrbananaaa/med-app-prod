@@ -5,10 +5,13 @@ import { Input } from '@/components/ui/input';
 import {
   Select,
   SelectContent,
+  SelectGroup,
   SelectItem,
+  SelectLabel,
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select';
+import { KOTA_ID } from '@/test/kota';
 
 import type { TFormSchema } from '../types';
 
@@ -65,9 +68,18 @@ export const ProfileForm = (profileForm: UseFormReturn<TFormSchema, any, undefin
                       </SelectTrigger>
                     </FormControl>
                     <SelectContent>
-                      <SelectItem value="surabaya">Surabaya</SelectItem>
-                      <SelectItem value="malang">Malang</SelectItem>
-                      <SelectItem value="bali">Bali</SelectItem>
+                      {Object.entries(KOTA_ID).map(([province, cities]) => (
+                        <SelectGroup key={province}>
+                          <>
+                            <SelectLabel>{province}</SelectLabel>
+                            {cities.map((city) => (
+                              <SelectItem key={city} value={city}>
+                                {city}
+                              </SelectItem>
+                            ))}
+                          </>
+                        </SelectGroup>
+                      ))}
                     </SelectContent>
                   </Select>
                 </FormItem>

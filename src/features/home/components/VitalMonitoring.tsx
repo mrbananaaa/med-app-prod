@@ -4,7 +4,7 @@ export const VitalMonitoring = () => {
       {(['Suhu', 'Denyut Nadi', 'Tekanan Darah'] as const).map((label) => (
         <div
           key={label}
-          className="flex items-center justify-between rounded-md bg-[#1939D2] p-3 font-medium"
+          className="flex items-center justify-between rounded-md bg-blue-500 p-3 font-medium"
         >
           <div className="max-w-[40px] text-xs leading-3 text-white">{label}</div>
           <div className="flex items-center justify-center rounded-md bg-white px-4 py-2">

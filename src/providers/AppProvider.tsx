@@ -1,9 +1,12 @@
+import { QueryClientProvider } from '@tanstack/react-query';
+import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import * as React from 'react';
 import { ErrorBoundary } from 'react-error-boundary';
 import { BrowserRouter as Router } from 'react-router-dom';
 
 import { Button } from '@/components/ui/button';
 import { Spinner } from '@/components/ui/spinner';
+import { queryClient } from '@/lib/react-query';
 
 const ErrorFallback = () => {
   return (
@@ -34,7 +37,10 @@ export const AppProvider = ({ children }: AppProviderProps) => {
         }
       >
         <ErrorBoundary FallbackComponent={ErrorFallback}>
-          <Router>{children}</Router>
+          <QueryClientProvider client={queryClient}>
+            <Router>{children}</Router>
+            <ReactQueryDevtools />
+          </QueryClientProvider>
         </ErrorBoundary>
       </React.Suspense>
     </>

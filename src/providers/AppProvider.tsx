@@ -5,6 +5,7 @@ import { ErrorBoundary } from 'react-error-boundary';
 import { BrowserRouter as Router } from 'react-router-dom';
 
 import { Button } from '@/components/ui/button';
+import { Loading } from '@/components/ui/loading';
 import { Spinner } from '@/components/ui/spinner';
 import { queryClient } from '@/lib/react-query';
 
@@ -38,6 +39,7 @@ export const AppProvider = ({ children }: AppProviderProps) => {
       >
         <ErrorBoundary FallbackComponent={ErrorFallback}>
           <QueryClientProvider client={queryClient}>
+            <Loading />
             <Router>{children}</Router>
             <ReactQueryDevtools />
           </QueryClientProvider>

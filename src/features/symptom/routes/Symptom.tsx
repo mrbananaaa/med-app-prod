@@ -22,7 +22,7 @@ export const Symptom = () => {
       <div className="justify-center lg:flex">
         <Link to="/diagnosis">
           <Button className="text-md mt-16 w-full bg-[#1939D2] py-7 font-semibold hover:bg-[#112FBD] lg:w-fit lg:px-32">
-            Diagnosa
+            Diagnosis
           </Button>
         </Link>
       </div>

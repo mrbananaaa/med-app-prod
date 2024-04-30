@@ -15,7 +15,11 @@
   "dependencies": {
     "@hookform/resolvers": "^3.3.4",
     "@radix-ui/react-label": "^2.0.2",
+    "@radix-ui/react-select": "^2.0.0",
     "@radix-ui/react-slot": "^1.0.2",
+    "@radix-ui/react-toast": "^1.1.5",
+    "@tanstack/react-query": "^5.32.0",
+    "@tanstack/react-query-devtools": "^5.32.0",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.1",
     "lucide-react": "^0.372.0",
@@ -26,9 +30,11 @@
     "react-router-dom": "^6.22.3",
     "tailwind-merge": "^2.3.0",
     "tailwindcss-animate": "^1.0.7",
-    "zod": "^3.23.3"
+    "zod": "^3.23.3",
+    "zustand": "^4.5.2"
   },
   "devDependencies": {
+    "@tanstack/eslint-plugin-query": "^5.28.11",
     "@types/node": "^20.12.7",
     "@types/react": "^18.2.66",
     "@types/react-dom": "^18.2.22",
@@ -54,9 +60,12 @@
     "vite": "^5.2.0",
     "vite-plugin-vercel": "^6.0.0"
   },
+  "engines": {
+    "pnpm": ">=6"
+  },
   "lint-staged": {
-    "**/*": [
-      "pnpm lint:fix"
+    "*.{js,ts,tsx}": [
+      "eslint . --fix --ignore-path .gitignore"
     ]
   }
 }

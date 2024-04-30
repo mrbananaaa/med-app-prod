@@ -12,6 +12,7 @@ module.exports = {
     'plugin:react-hooks/recommended',
     'plugin:tailwindcss/recommended',
     'plugin:prettier/recommended',
+    'plugin:@tanstack/eslint-plugin-query/recommended',
   ],
   plugins: ['react-refresh', 'import', 'prettier', 'tailwindcss'],
   overrides: [
@@ -27,6 +28,11 @@ module.exports = {
       rules: {
         // react-refresh
         'react-refresh/only-export-components': ['warn', { allowConstantExport: true }],
+
+        //tanstack-query
+        '@tanstack/query/exhaustive-deps': 'error',
+        '@tanstack/query/no-rest-destructuring': 'warn',
+        '@tanstack/query/stable-query-client': 'error',
 
         // tailwindcss
         'tailwindcss/no-custom-classname': 'off',
@@ -64,7 +70,7 @@ module.exports = {
         '@typescript-eslint/no-empty-function': ['off'],
         '@typescript-eslint/no-explicit-any': ['off'],
 
-        'prettier/prettier': ['error', {}, { usePrettierrc: true }],
+        'prettier/prettier': ['warn', {}, { usePrettierrc: true }],
       },
     },
   ],

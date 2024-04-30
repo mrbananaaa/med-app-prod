@@ -1,8 +1,8 @@
 import type { RouteObject } from 'react-router-dom';
 import { useRoutes } from 'react-router-dom';
 
-import MainLayout from '../components/Layout/MainLayout';
-import { lazyImport } from '../utils/lazyImport';
+import MainLayout from '@/components/Layout/MainLayout';
+import { lazyImport } from '@/utils/lazyImport';
 
 const { Home } = lazyImport(() => import('@/features/home'), 'Home');
 const { Symptom } = lazyImport(() => import('@/features/symptom'), 'Symptom');

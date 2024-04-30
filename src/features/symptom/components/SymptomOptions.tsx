@@ -38,7 +38,7 @@ export const SymptomOptions = () => {
               onChange={(e) => onChecked(e, name)}
             />
             <label
-              className="text-md flex w-full cursor-pointer select-none items-center justify-center rounded-md bg-gray-200 p-4 text-center font-semibold peer-checked:bg-blue-500 peer-checked:text-white"
+              className="flex w-full cursor-pointer select-none items-center justify-center rounded-md bg-gray-200 p-4 text-center font-semibold peer-checked:bg-blue-500 peer-checked:text-white"
               htmlFor={id}
             >
               <span>{name}</span>

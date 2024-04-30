@@ -7,6 +7,7 @@ import { BrowserRouter as Router } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Loading } from '@/components/ui/loading';
 import { Spinner } from '@/components/ui/spinner';
+import { Toaster } from '@/components/ui/toaster';
 import { queryClient } from '@/lib/react-query';
 
 const ErrorFallback = () => {
@@ -43,6 +44,7 @@ export const AppProvider = ({ children }: AppProviderProps) => {
             <Router>{children}</Router>
             <ReactQueryDevtools />
           </QueryClientProvider>
+          <Toaster />
         </ErrorBoundary>
       </React.Suspense>
     </>

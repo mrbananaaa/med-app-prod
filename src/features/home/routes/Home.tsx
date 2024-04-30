@@ -28,13 +28,9 @@ export const Home = () => {
   });
 
   function onSubmit({ nama, nik, tempatLahir, tanggalLahir, noRm }: TFormSchema) {
-    console.log('get empty store');
-    console.log(useUserStore.getState());
-
     const [tahun, bulan, tanggal] = tanggalLahir.split('-');
     const umur = String(new Date().getFullYear() - Number(tahun));
 
-    // TODO: set store value
     setUserInfo({
       nama,
       nik,
@@ -48,8 +44,6 @@ export const Home = () => {
       umur,
     });
 
-    console.log('get setted store');
-    console.log(useUserStore.getState());
     navigate('/symptom');
   }
 

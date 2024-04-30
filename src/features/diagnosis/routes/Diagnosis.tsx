@@ -5,6 +5,7 @@ import { VitalMonitor } from '@/features/misc';
 
 import { ShowDiagnosisResult } from '../components/ShowDiagnosisResult';
 import { ShowProfileForm } from '../components/ShowProfileForm';
+import { ShowSelectedSymptom } from '../components/ShowSelectedSymptom';
 
 export const Diagnosis = () => {
   return (
@@ -22,13 +23,17 @@ export const Diagnosis = () => {
           <h1 className="mt-14 text-3xl font-semibold">Identitas Diri</h1>
 
           <ShowProfileForm />
+
+          <h1 className="mt-14 text-2xl font-semibold leading-none">Monitoring Tanda Vital</h1>
+
+          <VitalMonitor />
         </div>
 
         <div>
-          <h1 className="mt-14 text-2xl font-semibold leading-none">Monitoring Tanda Vital</h1>
+          <h1 className="mt-14 text-2xl font-semibold leading-none">Daftar Gejala</h1>
 
-          <div className="lg:mt-14">
-            <VitalMonitor />
+          <div className="mt-8 lg:mt-14">
+            <ShowSelectedSymptom />
           </div>
         </div>
       </div>

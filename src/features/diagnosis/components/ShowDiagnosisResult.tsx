@@ -11,7 +11,7 @@ export const ShowDiagnosisResult = () => {
         <div className="mt-2">
           <h2>Tingkat Keparahan</h2>
           <div className="mt-2 rounded-md bg-[#1939D2] py-4 text-center text-sm text-white">
-            Kronis
+            Parah
           </div>
         </div>
       </div>

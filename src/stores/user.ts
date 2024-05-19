@@ -31,7 +31,7 @@ type UserInfo = {
 };
 
 type UserStore = {
-  setUserInfo: (userInfo: Omit<UserInfo, 'gejala'>) => void;
+  setUserInfo: (userInfo: Pick<UserInfo, 'nama' | 'nik' | 'noRm'>) => void;
   addSypmtom: (gejala: string) => void;
   removeSypmtom: (gejala: string) => void;
 } & UserInfo;
@@ -43,13 +43,11 @@ const useUserStoreBase = create<UserStore>()((set) => ({
   noRm: '',
   umur: '',
   gejala: [],
-  setUserInfo: ({ nama, nik, ttl, noRm, umur }) =>
+  setUserInfo: ({ nama, nik, noRm }) =>
     set(() => ({
       nama: nama,
       nik: nik,
-      ttl: ttl,
       noRm: noRm,
-      umur: umur,
     })),
   addSypmtom: (gejala) => {
     set((state) => ({ gejala: [...state.gejala, gejala] }));

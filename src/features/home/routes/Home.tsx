@@ -21,27 +21,15 @@ export const Home = () => {
     defaultValues: {
       nama: '',
       nik: '',
-      tempatLahir: '',
-      tanggalLahir: '',
       noRm: '',
     },
   });
 
-  function onSubmit({ nama, nik, tempatLahir, tanggalLahir, noRm }: TFormSchema) {
-    const [tahun, bulan, tanggal] = tanggalLahir.split('-');
-    const umur = String(new Date().getFullYear() - Number(tahun));
-
+  function onSubmit({ nama, nik, noRm }: TFormSchema) {
     setUserInfo({
       nama,
       nik,
-      ttl: {
-        kota: tempatLahir,
-        tanggal,
-        bulan,
-        tahun,
-      },
       noRm,
-      umur,
     });
 
     navigate('/symptom');

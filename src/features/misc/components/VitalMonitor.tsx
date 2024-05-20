@@ -1,8 +1,8 @@
 export const VitalMonitor = () => {
   const data = [
-    ['Suhu', 'C', '35'],
-    ['Denyut Nadi', 'Bpm', '70'],
-    ['Tekanan Darah', 'mmHg', '110/90'],
+    ['Suhu', 'C', '36'],
+    ['Denyut Nadi', 'Bpm', '85'],
+    ['Tekanan Darah', 'mmHg', '115/90'],
   ] as const;
 
   return (

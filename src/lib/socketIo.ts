@@ -3,7 +3,7 @@ import { io, Socket } from 'socket.io-client';
 import { SensorPayload } from '@/types/sensor';
 
 const SOCKET_URL =
-  process.env.NODE_ENV === 'production' ? 'https://api.medprecision.com' : 'http://localhost:8080';
+  process.env.NODE_ENV === 'production' ? 'https://api.medsprecision.com' : 'http://localhost:8080';
 
 interface ServerToClientEvents {
   'sensor:broadcast': (sensorPayload: SensorPayload) => void;
